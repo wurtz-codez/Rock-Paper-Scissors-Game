@@ -6,6 +6,29 @@ let score = JSON.parse(localStorage.getItem('score')) || {
 
 updateScoreElement();
 
+const rockElement = document.querySelector('.js-rock');
+const paperElement = document.querySelector('.js-paper');
+const scissorsElement = document.querySelector('.js-scissors');
+const resetElement = document.querySelector('.js-reset-button');
+
+rockElement.addEventListener('click', function() {
+  playGame('rock');
+});
+paperElement.addEventListener('click', function() {
+  playGame('paper');
+});
+scissorsElement.addEventListener('click', function() {
+  playGame('scissors');
+});
+resetElement.addEventListener('click', function() {  
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+  localStorage.removeItem('score');
+  updateScoreElement();
+});
+
+
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
 
@@ -96,3 +119,4 @@ function pickComputerMove() {
 
   return computerMove;
 }
+
